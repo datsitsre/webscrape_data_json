@@ -44,22 +44,15 @@ def scrape_website(url):
                 "h2": [h.text.strip() for h in soup.find_all('h2')],
                 "h3": [h.text.strip() for h in soup.find_all('h3')]
             },
-            "paragraphs": [p.text.strip() for p in soup.find_all('p')],
-            "links": [
-                {
-                    "text": a.text.strip(),
-                    "href": a.get('href'),
-                    "title": a.get('title', '')
-                } for a in soup.find_all('a') if a.get('href')
-            ],
-            "images":
-                [
-                    {
-                        "alt": img.get('alt', ''),
-                        "src": img.get('src'),
-                        "title": img.get('title', '')
-                    } for img in soup.find_all('img')
-                ]
+        "content":
+        [
+            {
+                "images": [img.get('src') for img in soup.find_all('img')],
+                "title": [a.text.strip() for a in soup.find_all("a")],
+                "content": [cont.text.strip() for cont in soup.find_all("div", class_="excerpt")],
+                "link": [a.get('href') for a in soup.find_all('a') if a.get('href')]
+            }
+        ]
         }
     }
 

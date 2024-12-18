@@ -1,9 +1,9 @@
 import scrape_api
 
 
-url = "https://malawi24.com"
+url = "https://malawi24.com/"
 
-scrape_api.scrape_and_save(url, "my_data.json")
+scrape_api.scrape_and_save(url, "my_data_data_new_test.json")
 
 
 
