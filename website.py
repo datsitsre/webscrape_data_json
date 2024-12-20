@@ -1,16 +1,14 @@
-import scrape_api
+from scrape_api import scrape_and_save, clean_data, insert_into_database
 
 
 url = "https://malawi24.com/"
+filename_store_json = "datasets/stored.json"
 
-scrape_api.scrape_and_save(url, "my_data_data_new_test.json")
+#Scrape the data
+scrape_and_save(url, filename_store_json)
 
+#Clean the data
+clean_data_out = clean_data("datasets/", "stored.json")
 
-clean_data_out = scrape_api.clean_data("datasets/", "data.json")
-
-#print(clean_data_out)
-
-database_insert = scrape_api.insert_into_database(clean_data_out)
-print(database_insert)
-#data = scrape_api.scrape_website(url)
-#scrape_api.save_to_json(data, "my_data.json")
+#Insert the data into the database
+insert_into_database(clean_data_out)

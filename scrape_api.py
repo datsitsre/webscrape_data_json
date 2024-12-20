@@ -2,10 +2,10 @@ import requests
 from bs4 import BeautifulSoup
 import json
 from datetime import datetime
-import numpy as np
+#import numpy as np
 import pandas as pd
 import mysql.connector 
-from datetime import date
+#from datetime import date
 
 
 def scrape_website(url):
@@ -64,10 +64,9 @@ def scrape_website(url):
     return data
 
 
-def save_to_json(data, filename="scraped_data.json", indent=2):
+def save_to_json(data, filename, indent=2):
     """
     Save the scraped data to a JSON file.
-    
     
     Parameters:
     dat (dict): The scraped data
@@ -80,10 +79,9 @@ def save_to_json(data, filename="scraped_data.json", indent=2):
         print(f"Data successfully saved to {filename}")
     except Exception as e:
         print(f"Error saving to JSON: {str(e)}")
-
         
 
-def scrape_and_save(url, filename="scraped_data.json"):
+def scrape_and_save(url, filename_stored_json):
     """
     Convenience function to scrape a website and save to JSON in one step.
     
@@ -92,7 +90,7 @@ def scrape_and_save(url, filename="scraped_data.json"):
     filename (str): Name of the output JSON file
     """
     data = scrape_website(url)
-    save_to_json(data, filename)
+    save_to_json(data, filename_stored_json)
     return data
 
     
